@@ -1,2 +1,5 @@
 # MacOS system files
 .DS_Store
+
+# All NPM modules
+node_modules/
