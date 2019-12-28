@@ -6,6 +6,20 @@ const Heading = ({text}) => (<h1>{text}</h1>);
 const Button = ({onClick, label}) => (<button onClick={onClick}>{label}</button>);
 const Stat = ({text, count}) => (<p>{text}: <strong>{count}</strong></p>);
 
+const Statistics = ({good, neutral, bad, getTotalStats, getAverageScore, getPositivePercentage}) => {
+    return(
+        <>
+            <Heading text="Statistics" />
+            <Stat text="Good" count={good} />
+            <Stat text="Neutral" count={neutral} />
+            <Stat text="Bad" count={bad}  />
+            <Stat text="All" count={getTotalStats()}  />
+            <Stat text="Average" count={getAverageScore()}  />
+            <Stat text="Positive %" count={getPositivePercentage()}  />
+        </>
+    );
+}
+
 const App = () =>{
     // Defining component's states with React hook
     const [good, setGood] = useState(0);
@@ -37,7 +51,7 @@ const App = () =>{
     const getAverageScore = () => {
         let sum = 0;
         const statMap = { 'g': 1, 'n': 0, 'b': -1 };
-        console.log(history);
+
         history.forEach((item) => (sum += statMap[item])); 
         return (sum/history.length).toFixed(2);
     }
@@ -50,13 +64,15 @@ const App = () =>{
             <Button onClick={() => updateStat('bad')} label="Bad" />
 
             <hr />
-            <Heading text="Statistics" />
-            <Stat text="Good" count={good} />
-            <Stat text="Neutral" count={neutral} />
-            <Stat text="Bad" count={bad}  />
-            <Stat text="All" count={getTotalStats()}  />
-            <Stat text="Average" count={getAverageScore()}  />
-            <Stat text="Positive %" count={getPositivePercentage()}  />
+
+            <Statistics 
+                good={good}
+                neutral={neutral}
+                bad={bad}
+                getTotalStats={getTotalStats}
+                getAverageScore={getAverageScore}
+                getPositivePercentage={getPositivePercentage}
+            />
         </>
     );
 }
