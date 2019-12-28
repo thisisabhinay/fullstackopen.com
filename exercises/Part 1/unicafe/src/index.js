@@ -11,19 +11,52 @@ const App = () =>{
     const [good, setGood] = useState(0);
     const [neutral, setNeutral] = useState(0);
     const [bad, setBad] = useState(0);
+    const [history, setHistory] = useState([]);
+
+    // Setter function(s)
+    const updateStat = (type) => {
+        switch(type){
+            case 'good' : 
+                setGood(good + 1);
+                setHistory(history.concat('g'));
+                break;
+            case 'neutral' : 
+                setNeutral(neutral + 1);
+                setHistory(history.concat('n'));
+                break;
+            case 'bad' : 
+                setBad(bad + 1);
+                setHistory(history.concat('b'));
+                break;
+        }
+    }
+
+    // Getter function(s)
+    const getTotalStats = () => (good + neutral + bad);
+    const getPositivePercentage = () => ((good / getTotalStats()) * 100).toFixed(2);
+    const getAverageScore = () => {
+        let sum = 0;
+        const statMap = { 'g': 1, 'n': 0, 'b': -1 };
+        console.log(history);
+        history.forEach((item) => (sum += statMap[item])); 
+        return (sum/history.length).toFixed(2);
+    }
 
     return(
         <>
             <Heading text="Give Feedback" />
-            <Button onClick={() => setGood(good + 1)} label="Good" />
-            <Button onClick={() => setNeutral(neutral + 1)} label="Neutral" />
-            <Button onClick={() => setBad(bad + 1)} label="Bad" />
+            <Button onClick={() => updateStat('good')} label="Good" />
+            <Button onClick={() => updateStat('neutral')} label="Neutral" />
+            <Button onClick={() => updateStat('bad')} label="Bad" />
 
             <hr />
-            <Heading text="Statics" />
+            <Heading text="Statistics" />
             <Stat text="Good" count={good} />
             <Stat text="Neutral" count={neutral} />
             <Stat text="Bad" count={bad}  />
+            <Stat text="All" count={getTotalStats()}  />
+            <Stat text="Average" count={getAverageScore()}  />
+            <Stat text="Positive %" count={getPositivePercentage()}  />
         </>
     );
 }
