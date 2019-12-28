@@ -6,16 +6,22 @@ const Heading = ({text}) => (<h1>{text}</h1>);
 const Button = ({onClick, label}) => (<button onClick={onClick}>{label}</button>);
 const Stat = ({text, count}) => (<p>{text}: <strong>{count}</strong></p>);
 
-const Statistics = ({good, neutral, bad, getTotalStats, getAverageScore, getPositivePercentage}) => {
+const Statistics = (props) => {
+    if(props.getTotalStats() === 0){
+        return(
+            <p>No feedback given</p>
+        );
+    }
+    
     return(
         <>
             <Heading text="Statistics" />
-            <Stat text="Good" count={good} />
-            <Stat text="Neutral" count={neutral} />
-            <Stat text="Bad" count={bad}  />
-            <Stat text="All" count={getTotalStats()}  />
-            <Stat text="Average" count={getAverageScore()}  />
-            <Stat text="Positive %" count={getPositivePercentage()}  />
+            <Stat text="Good" count={props.good} />
+            <Stat text="Neutral" count={props.neutral} />
+            <Stat text="Bad" count={props.bad}  />
+            <Stat text="All" count={props.getTotalStats()}  />
+            <Stat text="Average" count={props.getAverageScore()}  />
+            <Stat text="Positive %" count={props.getPositivePercentage()}  />
         </>
     );
 }
