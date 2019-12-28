@@ -4,7 +4,19 @@ import './index.css';
 
 const Heading = ({text}) => (<h1>{text}</h1>);
 const Button = ({onClick, label}) => (<button onClick={onClick}>{label}</button>);
-const Stat = ({text, count}) => (<p>{text}: <strong>{count}</strong></p>);
+const Stat = ({text, count}) => {
+    return(
+        <tr>
+            <td>
+                {text}
+            </td> 
+            <td>&nbsp;</td>
+            <td>
+                <strong>{count}</strong>
+            </td>
+        </tr>
+    );
+}
 
 const Statistics = (props) => {
     if(props.getTotalStats() === 0){
@@ -12,16 +24,20 @@ const Statistics = (props) => {
             <p>No feedback given</p>
         );
     }
-    
+
     return(
         <>
             <Heading text="Statistics" />
-            <Stat text="Good" count={props.good} />
-            <Stat text="Neutral" count={props.neutral} />
-            <Stat text="Bad" count={props.bad}  />
-            <Stat text="All" count={props.getTotalStats()}  />
-            <Stat text="Average" count={props.getAverageScore()}  />
-            <Stat text="Positive %" count={props.getPositivePercentage()}  />
+            <table>
+                <tbody>
+                    <Stat text="Good" count={props.good} />
+                    <Stat text="Neutral" count={props.neutral} />
+                    <Stat text="Bad" count={props.bad}  />
+                    <Stat text="All" count={props.getTotalStats()}  />
+                    <Stat text="Average" count={props.getAverageScore()}  />
+                    <Stat text="Positive %" count={props.getPositivePercentage()}  />
+                </tbody>
+            </table>
         </>
     );
 }
