@@ -6,9 +6,11 @@ import Total from '../components/Total'
 const Course = ({course}) => {
     let exercises = course.parts.map((part) => part.exercises);
     return(
-        <div>
+        <div className="course">
             <Header courseName={course.name} />
+            <hr />
             <Content parts={course.parts} />
+            <hr />
             <Total exercises={exercises} />
         </div>
     );
