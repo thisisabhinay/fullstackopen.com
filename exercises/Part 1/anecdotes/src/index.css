@@ -29,3 +29,28 @@ blockquote{
 button{
   margin-right: 0.5rem;
 }
+
+.action{
+  padding: 0.5rem;
+  background-color: #1b1b1b;
+  border-radius: 4px;
+  content: "";
+}
+
+.clearfix::after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.action button{
+  font-weight: 800;
+  float: right;
+}
+
+.votes{
+  font-weight: 800;
+  color: #EEE;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}

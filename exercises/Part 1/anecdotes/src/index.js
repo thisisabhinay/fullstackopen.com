@@ -2,6 +2,40 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+const Heading = ({text}) => (<h1>{text}</h1>);
+const Button = ({onClick, label}) => (<button onClick={onClick}>{label}</button>);
+
+const Anecdotes = (props) => {
+    return(
+        <>
+            <Heading text={props.title} />
+            <div className="action clearfix">
+                <span className="votes">Votes: {props.votes[props.selected]}</span>
+                <Button onClick={props.nextAnecdote} label="Next Anecdote" />
+                <Button onClick={props.vote} label="Vote" />
+            </div>
+            <blockquote>
+                {props.anecdotes[props.selected]}
+            </blockquote>
+        </>
+    );
+}
+
+const PopularAnecdote = ({title, anecdote}) => {
+    if (anecdote.vote === 0) return null;
+    return(
+        <>
+            <Heading text={title} />
+            <div className="action clearfix">
+                <span className="votes">Votes: {anecdote.vote}</span>
+            </div>
+            <blockquote>
+                {anecdote.text}
+            </blockquote>
+        </>
+    );
+}
+
 const App = ({anecdotes}) => {
     const [selected, setSelected] = useState(0);
     const [votes, setVotes] = useState(anecdotes.map(() => 0));
@@ -24,16 +58,29 @@ const App = ({anecdotes}) => {
         );
     }
 
+    // Gets highest voted anecdote
+    const getPopularAnecdote = () => ({
+        text: anecdotes[votes.indexOf(Math.max(...votes))],
+        vote: Math.max(...votes)
+    });
+
     return(
         <>
-            <hr/>
-            <button onClick={nextAnecdote}>Next Anecdote</button>
-            <button onClick={vote}>Vote</button>
-            <hr/>
-            <blockquote>
-                {anecdotes[selected]}
-            </blockquote>
-            has {votes[selected]} votes
+            <Anecdotes 
+                title="Anecdote of the day"
+                votes={votes}
+                anecdotes={anecdotes}
+                selected={selected}
+                vote={vote}
+                nextAnecdote={nextAnecdote}
+            />
+
+            <hr />
+
+            <PopularAnecdote 
+                title="Anecdote with most votes"
+                anecdote={getPopularAnecdote()}
+            />
         </>
     );
 }
