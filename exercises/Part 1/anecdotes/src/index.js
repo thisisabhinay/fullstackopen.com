@@ -4,22 +4,36 @@ import './index.css';
 
 const App = ({anecdotes}) => {
     const [selected, setSelected] = useState(0);
+    const [votes, setVotes] = useState(anecdotes.map(() => 0));
+
+    // Choose next anecdote to display
     const nextAnecdote = () => {
         const min = 0;
         const max = anecdotes.length - 1;
         const random = Math.floor(Math.random() * (max - min + 1)) + min;
-        console.log(random);
         setSelected(random);
     };
+
+    // Updates the vote of given anecdote
+    const vote = () => {
+        setVotes(
+            votes.map((item, index) => {
+                if(index === selected) return votes[selected] + 1;
+                return item;
+            })
+        );
+    }
 
     return(
         <>
             <hr/>
             <button onClick={nextAnecdote}>Next Anecdote</button>
+            <button onClick={vote}>Vote</button>
             <hr/>
             <blockquote>
                 {anecdotes[selected]}
             </blockquote>
+            has {votes[selected]} votes
         </>
     );
 }

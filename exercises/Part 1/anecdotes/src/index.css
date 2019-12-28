@@ -25,3 +25,7 @@ blockquote{
   padding-left: 1rem;
   border-left: 4px solid #444;
 }
+
+button{
+  margin-right: 0.5rem;
+}
