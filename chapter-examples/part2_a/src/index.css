@@ -29,3 +29,44 @@ li a{
   color: #BDBDBD;
   text-decoration: underline;
 }
+
+div.form{
+  padding: 1rem 2rem;
+  border-top: 1px solid #1111117d;
+  border-bottom: 1px solid #1111117d;
+  margin: 0 -2rem 2rem -2rem;
+  background-color: #1111113d;
+}
+
+form input{
+  background: #111;
+  border: 1px solid #000;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  width: 70%;
+  color: #DDD;
+  font-size: 1rem;
+}
+form{
+  width: 60%;
+  display: inline-block;
+}
+
+button{
+  padding: 0.5rem 1rem;
+  background-color: #777;
+  border: 1px solid #000;
+  border-radius: 4px;
+  outline: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: inline-block;
+}
+form button:hover{
+  background-color: #555;
+  cursor: pointer;
+}
+form button:active{
+  background-color: #444;
+}
