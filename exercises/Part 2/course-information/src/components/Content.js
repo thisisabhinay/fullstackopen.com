@@ -3,9 +3,11 @@ import Part from '../components/Part'
 
 const Content = ({parts}) => {
     return(
-        <div>
-            {parts.map((part) => <Part key={part.id} part={part} />)}
-        </div>
+        <table>
+            <tbody>
+                {parts.map((part) => <Part key={part.id} part={part} />)}
+            </tbody>
+        </table>
     );
 }
 

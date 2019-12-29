@@ -49,7 +49,19 @@ hr{
   border: 1px solid #111;
 }
 
+.course p,
 .course h3,
-.course p{
+.course table{
   padding: 0 1rem;
+}
+
+table{
+  width: 60%;
+}
+table tbody tr td:first-child{
+  width: 70%;
+}
+table tbody tr td:last-child{
+  width: 30%;
+  text-align: right;
 }

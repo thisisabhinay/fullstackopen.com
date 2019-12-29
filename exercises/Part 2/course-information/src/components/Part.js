@@ -2,9 +2,10 @@ import React from 'react'
 
 const Part = ({part}) => {
     return(
-        <p>
-            {part.name} --> {part.exercises}
-        </p>
+        <tr>
+            <td>{part.name}</td>
+            <td>{part.exercises}</td>
+        </tr>
     );
 }
 
