@@ -52,6 +52,7 @@ form{
   border-bottom: 1px solid #111111;
   background-color: #1111113d;
   margin-bottom: 2rem;
+  text-align: left;
 }
 
 button{
@@ -64,19 +65,28 @@ button{
   text-transform: uppercase;
   display: inline-block;
 }
+
+form button {
+  margin: 0.5rem auto;
+  padding: 0.5rem 2rem;
+  display: block;
+}
+
 form button:hover{
   background-color: #555;
   cursor: pointer;
 }
+
 form button:active{
   background-color: #444;
 }
 
 .inline-input{
-  width: 70%;
+  width: 100%;
+  display: block;
+  padding: 0.5rem;
 }
 
-.inline-input,
 .inline-input span,
 .inline-input input{
   padding: 0.5rem;
@@ -84,6 +94,7 @@ form button:active{
 }
 
 .inline-input span{
+  width: 78px;
   padding-left: 0;
 }
 

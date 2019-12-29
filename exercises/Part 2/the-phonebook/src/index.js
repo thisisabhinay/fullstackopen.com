@@ -8,18 +8,20 @@ import './index.css';
 
 const App = () => {
     const [ persons, setPersons] = useState([
-        { name: 'Arto Hellas' }
+        { name: 'Arto Hellas' , contact: '040-1234567', id: 1 }
     ]); 
     const [ newName, setNewName ] = useState('');
+    const [ newNumber, setNewNumber ] = useState('');
 
-    // Sync input entered with component's 'inputValue' state
-    const inputChangeHandle = (event) => setNewName(event.target.value);
+    // Sync input entered with component inputs state
+    const newNameChange = (event) => setNewName(event.target.value);
+    const newNumberChange = (event) => setNewNumber(event.target.value);
     
     // Generates list of contacts in the state
     const contacts = () => {
 		return persons.map((person, i) => 
             <Item 
-                key={i} 
+                key={person.id} 
                 name={person.name} 
                 contact={person.contact}
             />
@@ -39,12 +41,14 @@ const App = () => {
 
         const newPerson = {
             name: newName,
+            contact: newNumber,
             created_on: new Date().toISOString(),
             id: persons.length + 1
         }
 
         setPersons(persons.concat(newPerson));
         setNewName('');
+        setNewNumber('');
 	};
 
     return(
@@ -54,7 +58,12 @@ const App = () => {
                 <InlineInput 
                     label="Name: "
                     inputValue={newName}
-                    inputChangeHandle={inputChangeHandle}
+                    inputChangeHandle={newNameChange}
+                />
+                <InlineInput 
+                    label="Phone No: "
+                    inputValue={newNumber}
+                    inputChangeHandle={newNumberChange}
                 />
                 <Button type="submit" label="Save" />
             </form>
