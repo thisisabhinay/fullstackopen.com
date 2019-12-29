@@ -1,11 +1,20 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #222;
+  background: #111;
   color: #999;
-  padding: 2rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root{
+  max-width: 480px;
+  border: 1px solid #000;
+  padding: 1rem;
+  box-shadow: 0 0 18px 4px rgba(0,0,0,0.8);
+  border-radius: 8px;
+  background: #222;
+  margin: 2rem auto;
 }
 
 code {

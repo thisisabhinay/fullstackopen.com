@@ -88,7 +88,7 @@ const App = () => {
 
             <Contacts 
                 text="Numbers"
-                contacts={contacts()}
+                contacts={contacts() }
             />
         </>
     );
