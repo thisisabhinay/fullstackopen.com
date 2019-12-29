@@ -29,6 +29,14 @@ const App = () => {
     // Creates new contact
     const onSubmit = (event) => {
         event.preventDefault();
+
+        // Checking if name is already present in the state. 
+        // If yes then don't create new contact
+        if(!!persons.filter((person) => person.name.toUpperCase() === newName.toUpperCase()).length){
+            alert(`"${newName}" already exists in phonebook.`);
+            return;
+        };
+
         const newPerson = {
             name: newName,
             created_on: new Date().toISOString(),
