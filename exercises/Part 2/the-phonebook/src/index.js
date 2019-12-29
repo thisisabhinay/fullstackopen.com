@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import Heading from './components/Heading';
-import Button from './components/Button';
-import InlineInput from './components/InlineInput';
 import Item from './components/Item';
+import Form from './components/Form'
+import Contacts from './components/Contacts'
+import Search from './components/Search';
 import './index.css';
 
 const App = () => {
@@ -70,35 +70,26 @@ const App = () => {
 
     return(
         <>
-            <Heading text="Phonebook" />
-            <InlineInput 
-                label="Search: "
-                inputChangeHandle={search}
+            <Search
+                text="Phonebook"
+                onSearch={search}
             />
             <hr/>
 
-            <Heading text="Create New Contact" />
-            <form onSubmit={onSubmit}>
-                <InlineInput 
-                    label="Name: "
-                    inputValue={newName}
-                    inputChangeHandle={newNameChange}
-                />
-                <InlineInput 
-                    label="Phone No: "
-                    inputValue={newNumber}
-                    inputChangeHandle={newNumberChange}
-                />
-                <Button type="submit" label="Save" />
-            </form>
+            <Form
+                text="Create New Contact"
+                onSubmit={onSubmit}
+                newName={newName}
+                newNumber={newNumber}
+                newNameChange={newNameChange}
+                newNumberChange={newNumberChange}
+            />
             <hr />
 
-            <Heading text="Numbers" />
-            <table>
-                <tbody>
-                    {contacts()}
-                </tbody>
-            </table>
+            <Contacts 
+                text="Numbers"
+                contacts={contacts()}
+            />
         </>
     );
 };
