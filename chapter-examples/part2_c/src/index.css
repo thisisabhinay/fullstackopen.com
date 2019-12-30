@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    background: #111;
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #111;
+    color: #999;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    max-width: 480px;
+    border: 1px solid #000;
+    padding: 1rem;
+    box-shadow: 0 0 18px 4px rgba(0,0,0,0.8);
+    border-radius: 8px;
+    background: #222;
+    margin: 2rem auto;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+hr {
+    border-color: #444;
+}
+
+h1 {
+    padding: 0 0.5rem;
+}
+
+ul {
+    padding-left: 1rem;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li a {
+    color: #BDBDBD;
+    text-decoration: underline;
+}
+
+input {
+    background: #111;
+    border: 1px solid #000;
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    width: 70%;
+    color: #DDD;
+    font-size: 1rem;
+}
+
+form {
+    display: block;
+    padding: 0.5rem;
+    border-top: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+    background-color: #1111113d;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: #777;
+    border: 1px solid #000;
+    border-radius: 4px;
+    outline: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+}
+
+form button {
+    margin: 0.5rem auto;
+    padding: 0.5rem 2rem;
+    display: block;
+}
+form button:hover {
+    background-color: #555;
+    cursor: pointer;
+}
+form button:active {
+    background-color: #444;
+}
+
+.inline-input {
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+}
+
+.inline-input input,
+.inline-input span {
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.inline-input span {
+    width: 78px;
+    padding-left: 0;
+}
+
+table {
+    width: 100%;
+}
+
+table tbody tr td {
+    padding: 0.25rem 0.5rem;
+}
+table tbody tr:nth-child(odd) {
+    background-color: #1111113d;
+}
+table tbody tr:nth-child(even) {
+    background-color: transparent;
+}
