@@ -3,3 +3,6 @@
 
 # All NPM modules
 node_modules/
+
+# All gitgnore(s) inside different npm projects
+.gitignore
