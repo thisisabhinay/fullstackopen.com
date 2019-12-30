@@ -16,7 +16,7 @@ const Country = (props) => {
             <ul>
                 {languages()}
             </ul>
-            <img src={props.flag} />
+            <img src={props.flag} alt={`${props.name}'s flag`} />
         </div>
     );
 }

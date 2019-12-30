@@ -20,6 +20,8 @@ const App = () => {
             });
     }
 
+    const fetchCountry = (name) => axios.get(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`);
+
     useEffect(fetchData , []);
 
     const onQueryChange = (event) => {
@@ -44,12 +46,31 @@ const App = () => {
             );
             return;
         }
-        
+
         setSearchState('error');
     }
 
- 
-    const countriesList = () => countries.map((country) => <p key={country.name}>{country.name}</p>);
+    const showCountryDetail = (event) => {
+        const name = (event.target.getAttribute('data-name'));
+        fetchCountry(name)
+            .then(response => {
+                console.log(response);
+                setCountries(response.data);
+                setSearchState('country');
+            });
+    }
+
+    const countriesList = () => countries.map((country) => {
+        return  <p key={country.name}>
+                    {country.name} &nbsp;
+                    <button
+                        data-name={country.name}
+                        onClick={showCountryDetail}
+                    >
+                        Details
+                    </button>
+                </p>
+    });
 
     const renderRequiredComponent = () => {
         switch(searchState) {
@@ -61,7 +82,7 @@ const App = () => {
                 return <p>Too many matches, specify another filter</p>
             case 'country':
                 const {name, population, flag, capital, languages} = countries[0];
-                return <Country 
+                return <Country
                             name={name}
                             languages={languages}
                             capital={capital}
@@ -70,7 +91,7 @@ const App = () => {
                         />
         }
     }
-    
+
     return(
         <>
             Find countries: &nbsp;
@@ -83,4 +104,3 @@ const App = () => {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
