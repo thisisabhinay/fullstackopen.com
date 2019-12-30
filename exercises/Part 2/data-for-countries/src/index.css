@@ -1,13 +1,80 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: sans-serif;
+    background: #111;
+    color: #999;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+    max-width: 480px;
+    border: 1px solid #000;
+    padding: 1rem;
+    box-shadow: 0 0 18px 4px rgba(0,0,0,0.8);
+    border-radius: 8px;
+    background: #222;
+    margin: 2rem auto;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+hr {
+    border-color: #444;
+}
+
+ul {
+    padding-left: 1rem;
+}
+
+li {
+    margin: 0.5rem 0;
+}
+
+li a {
+    color: #BDBDBD;
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: 800;
+}
+
+hr {
+    border-color: #1d1d1d3d;
+}
+
+.text-bright {
+    color: #BDBDBD;
+}
+
+.course {
+    width: 32rem;
+    background-color: #1d1d1d;
+    margin-bottom: 1rem;
+    border: 1px solid #111;
+}
+
+.course h3,
+.course p,
+.course table {
+    padding: 0 1rem;
+}
+
+table {
+    width: 60%;
+}
+table tbody tr td:first-child {
+    width: 70%;
+}
+table tbody tr td:last-child {
+    width: 30%;
+    text-align: right;
+}
+
+.country img{
+    width: 80px;
+    height: auto;
 }
