@@ -8,6 +8,7 @@ const App = () => {
     const [intialCountries, setIntialCountries] = useState([]);
     const [searchState, setSearchState] = useState('empty');
     const [countries, setCountries] = useState(intialCountries);
+    const [weather, setWeather] = useState([]);
 
     const fetchData = () => {
         axios
@@ -22,6 +23,8 @@ const App = () => {
 
     const fetchCountry = (name) => axios.get(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`);
 
+    const fetchWeather = (name) => axios.get(`http://api.weatherstack.com/current?access_key=2f671c94b47ee9b77952a62f97a9aec6&query=${name}`);
+
     useEffect(fetchData , []);
 
     const onQueryChange = (event) => {
@@ -35,15 +38,21 @@ const App = () => {
         }
 
         const result = intialCountries.filter(({name}) => name.toUpperCase().search(str) !== -1);
+        
+        if (result.length === 1){
+            const {name} = result[0];
+            fetchWeather(name).then((response) => {
+                console.log(response.data);
+                setWeather(response.data);
+                setCountries(result);
+                setSearchState('country');
+            });
+            return;
+        }
+        
         if (result.length <= 10) {
-            // TODO: Need to find solution that doesn't effect
-            // immutability of the state
             setCountries(result);
-            setSearchState(
-                result.length === 1
-                ? 'country'
-                : 'show'
-            );
+            setSearchState('show');
             return;
         }
 
@@ -54,9 +63,13 @@ const App = () => {
         const name = (event.target.getAttribute('data-name'));
         fetchCountry(name)
             .then(response => {
-                console.log(response);
                 setCountries(response.data);
                 setSearchState('country');
+            })
+            .then(() => {
+                fetchWeather(name).then((response) => {
+                    setWeather(response.data);
+                });
             });
     }
 
@@ -88,7 +101,9 @@ const App = () => {
                             capital={capital}
                             population={population}
                             flag={flag}
+                            weather={weather}
                         />
+            default: 
         }
     }
 
