@@ -2,12 +2,12 @@
     box-sizing: border-box;
 }
 html {
-    background: #111;
+    background: #111 !important;
 }
 body {
     margin: 0;
     font-family: sans-serif;
-    background: #111;
+    background: #111 !important;
     color: #999;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -36,16 +36,24 @@ h1 {
 }
 
 ul {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+    list-style-type: none;
 }
 
 li {
-    margin: 0.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
+    padding-left: 0.5rem;
+    border-left: 4px solid #444;
 }
 
 li a {
     color: #BDBDBD;
     text-decoration: underline;
+}
+
+li button{
+    padding: 0 0.25rem;
+    margin: 0.25rem 0 0 0;
 }
 
 input {
@@ -79,6 +87,11 @@ button {
     text-transform: uppercase;
     display: block;
     margin: 0 auto;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #ababab;
 }
 
 form button {
@@ -87,7 +100,7 @@ form button {
     display: block;
 }
 form button:hover {
-    background-color: #555;
+    background-color: #ababab;
     cursor: pointer;
 }
 form button:active {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import noteService from './services/notes'
 import Note from './components/Note';
 import './index.css';
 
@@ -12,22 +12,36 @@ const App = () => {
 
     // Effect Hook
     useEffect(() => {
-        console.log('effect...');
-        axios
-            .get('http://localhost:3001/notes')
+        noteService
+            .getAll()
             .then(response => {
-                console.log('promise fulfilled', response);
                 setNotes(response.data);
             });
     }, []);
-    console.log('render', notes.length, 'notes')
 
     // Component functions
     const notesToShow = showAll
         ? notes
         : notes.filter((note) => note.important);
 
-    const rows = () => notesToShow.map((note) => <Note key={note.id} note={note} />);
+    const toggleImportanceOf = id => {
+        const note= notes.find(n => n.id === id);
+        const changedNote= {...note, important: !note.important}; // Toggles the importance of the note
+
+        noteService
+            .update(id, changedNote)
+            .then(response => {
+                setNotes(notes.map(note => note.id !== id ? note: response.data));
+            });
+    }
+
+    const rows = () => notesToShow.map((note) => 
+        <Note 
+            key={note.id} 
+            note={note} 
+            toggleImportance={() => toggleImportanceOf(note.id)}
+        />
+    );
     
     const handleNoteChange = (event) => setNewNote(event.target.value);
     
@@ -36,13 +50,17 @@ const App = () => {
         const noteObject = {
             content: newNote,
             date: new Date().toISOString(),
-            important: Math.random > 0.5,
-            id: notes.length + 1
+            important: Math.random() > 0.5,
         }
 
-        // Saving the newly created note into component's state
-        setNotes(notes.concat(noteObject));
-        setNewNote('');
+        // Storing the new note on server
+        noteService
+            .create(noteObject)
+            .then(response => {
+                // Saving the newly created note into component's state
+                setNotes(notes.concat(response.data));
+                setNewNote('');
+            });
     }
 
     return(
