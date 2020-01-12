@@ -27,7 +27,7 @@
     {
       "content": "Lorem ipsum is a dummy text",
       "date": "2019-12-31T18:11:41.764Z",
-      "important": true,
+      "important": false,
       "id": 5
     },
     {
@@ -47,6 +47,12 @@
       "date": "2019-12-31T18:32:00.456Z",
       "important": false,
       "id": 8
+    },
+    {
+      "content": "Another note for testing after a long time",
+      "date": "2020-01-12T14:13:17.257Z",
+      "important": true,
+      "id": 9
     }
   ]
 }

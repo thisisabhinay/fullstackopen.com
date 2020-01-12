@@ -14,9 +14,7 @@ const App = () => {
     useEffect(() => {
         noteService
             .getAll()
-            .then(response => {
-                setNotes(response.data);
-            });
+            .then(intialNotes => setNotes(intialNotes));
     }, []);
 
     // Component functions
@@ -30,8 +28,14 @@ const App = () => {
 
         noteService
             .update(id, changedNote)
-            .then(response => {
-                setNotes(notes.map(note => note.id !== id ? note: response.data));
+            .then(returnedNote => {
+                setNotes(notes.map(note => note.id !== id ? note: returnedNote));
+            })
+            .catch(error => {
+                alert(
+                    `The note "${note.content}" was already deleted from the server.`
+                );
+                setNotes(notes.filter(n => n.id !== id));
             });
     }
 
@@ -56,9 +60,9 @@ const App = () => {
         // Storing the new note on server
         noteService
             .create(noteObject)
-            .then(response => {
+            .then(returnedNote => {
                 // Saving the newly created note into component's state
-                setNotes(notes.concat(response.data));
+                setNotes(notes.concat(returnedNote));
                 setNewNote('');
             });
     }
